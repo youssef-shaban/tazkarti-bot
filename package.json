@@ -4,7 +4,7 @@
   "description": "telegram bot to consume tazkarti APIs using Nodejs",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon server.js",
+    "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
