@@ -1,0 +1,29 @@
+{
+  "name": "tazkarti-bot",
+  "version": "1.0.0",
+  "description": "telegram bot to consume tazkarti APIs using Nodejs",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/youssef-shaban/tazkarti-bot.git"
+  },
+  "author": "Youssef Shaaban",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/youssef-shaban/tazkarti-bot/issues"
+  },
+  "homepage": "https://github.com/youssef-shaban/tazkarti-bot#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  },
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "node-cron": "^3.0.2",
+    "request": "^2.88.2"
+  }
+}
