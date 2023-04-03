@@ -41,4 +41,5 @@ corn.schedule("*/5 * * * * *", () => {
 const port = 8000;
 const server = app.listen(port, () => {
   console.log(`console is running on Port ${port}`);
+  telegram.SendMessage("Server is up and running");
 });
