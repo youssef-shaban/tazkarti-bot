@@ -2,8 +2,8 @@ const express = require("express");
 const corn = require("node-cron");
 const request = require("request");
 const dotenv = require("dotenv");
-const telegram = require("./telegramBot.js");
-const messageHandler = require("./messageHandler.js");
+const telegram = require("./src/telegramBot.js");
+const messageHandler = require("./src/messageHandler.js");
 dotenv.config({ path: "./config.env" });
 
 const app = express();
@@ -22,24 +22,34 @@ request(options, (err, res) => {
   oldRes = JSON.parse(res.body);
 });
 
-corn.schedule("*/5 * * * * *", () => {
+corn.schedule("*/2 * * * * *", () => {
   request(options, (err, res) => {
     if (err) throw new Error(err);
+
     let newRes = JSON.parse(res.body);
-    let difference = newRes.filter(
+    let addedMatches = newRes.filter(
       (item) => !oldRes.some((other) => item.matchId === other.matchId)
     );
-    if (difference.length > 0) {
-      difference.forEach((element) => {
+
+    if (addedMatches.length > 0) {
+      addedMatches.forEach((element) => {
         telegram.SendMessage(messageHandler.matchMessage(element));
+        // console.log(messageHandler.matchMessage(element));
       });
     }
+    console.log(`there is ${addedMatches.length} added matches.`);
     oldRes = newRes;
   });
 });
 
-const port = 8000;
+app.use("/api/v1/", (req, res, next) => {
+  res.status(200).json({
+    status: "success",
+    massage: "Welcome to tazkarti bot",
+  });
+});
+
+const port = 8080;
 const server = app.listen(port, () => {
   console.log(`console is running on Port ${port}`);
-  telegram.SendMessage("Server is up and running");
 });
