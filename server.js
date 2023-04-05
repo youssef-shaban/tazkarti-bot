@@ -25,7 +25,6 @@ request(options, (err, res) => {
 corn.schedule("*/2 * * * * *", () => {
   request(options, (err, res) => {
     if (err) throw new Error(err);
-
     let newRes = JSON.parse(res.body);
     let addedMatches = newRes.filter(
       (item) => !oldRes.some((other) => item.matchId === other.matchId)

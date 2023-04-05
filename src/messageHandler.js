@@ -15,10 +15,13 @@ exports.matchMessage = (matchJson) => {
   const timeWithoutSeconds = formattedTime.slice(0, -3).toLowerCase();
 
   return `
-    *⚽NEW Match Released*
-    *${matchJson["tournament"]["nameEn"]}*
-    ${matchJson["teamName1"]} VS ${matchJson["teamName2"]}
-    🏟️ ${matchJson["stadiumName"]}
-    ⏱️${dateString} \\- ${timeWithoutSeconds}pm
+      *${matchJson["tournament"]["nameEn"]}*
+  \\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-
+
+  ${matchJson["teamName1"]} VS ${matchJson["teamName2"]}
+
+  \\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-
+  🏟️ ${matchJson["stadiumName"]}
+  ⏱️${dateString} \\- ${timeWithoutSeconds}pm
     `;
 };
