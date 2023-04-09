@@ -23,5 +23,5 @@ exports.matchMessage = (matchJson) => {
   \\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-\\-
   🏟️ ${matchJson["stadiumName"]}
   ⏱️${dateString} \\- ${timeWithoutSeconds}pm
-    `;
+    `.replace(".","\\.");
 };

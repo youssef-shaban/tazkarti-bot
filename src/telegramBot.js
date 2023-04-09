@@ -18,6 +18,16 @@ exports.SendMessage = (message) => {
     },
   };
   request(options, (err, res) => {
-    console.log(res.body);
+    if (res.body.ok == false) {
+      options["body"] = JSON.stringify({
+        chat_id: process.env.TELEGRAM_CHAT_ID,
+        text: "a new Match added but can return its data",
+      });
+      request(options, (err, res) => {
+        console.log(res.body);
+      });
+    } else {
+      console.log(res.body);
+    }
   });
 };
