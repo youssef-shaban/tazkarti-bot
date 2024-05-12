@@ -33,6 +33,7 @@ const getMatches = async () => {
 
 getMatches();
 app.use("/api/v1/", (req, res, next) => {
+  console.log("I am wake up right now");
   res.status(200).json({
     status: "success",
     massage: "Welcome to tazkarti bot",
