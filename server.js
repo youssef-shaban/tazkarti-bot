@@ -14,11 +14,14 @@ let getMatchesDone = false;
 
 const getMatches = async () => {
   while (true) {
-    const response = await axios.get(process.env.MATCH_REQUEST, {
-      validateStatus: (status) => {
-        return true;
-      },
-    });
+    const response = await axios.get(
+      process.env.MATCH_REQUEST.replace("<TIME>", new Date().getTime()),
+      {
+        validateStatus: (status) => {
+          return true;
+        },
+      }
+    );
     if (response.status == 200) {
       oldRes = response.data;
       getMatchesDone = true;
@@ -38,11 +41,16 @@ app.use("/api/v1/", (req, res, next) => {
 
 corn.schedule("*/2 * * * * *", async () => {
   if (!getMatchesDone) return;
-  let res = await axios.get(process.env.MATCH_REQUEST, {
-    validateStatus: function (status) {
-      return true;
-    },
-  });
+
+  let res = await axios.get(
+    process.env.MATCH_REQUEST.replace("<TIME>", new Date().getTime()),
+    {
+      validateStatus: function (status) {
+        return true;
+      },
+    }
+  );
+
   if (res.status != 200) {
     console.log("💥💥 WRONG REQUEST");
     return;
